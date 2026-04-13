@@ -1,162 +1,54 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Hello Kitty 人格测试</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "PingFang SC","Microsoft YaHei",sans-serif;
-    }
-    body {
-      background: #fef2f7;
-      padding: 20px;
-      display: flex;
-      justify-content: center;
-      min-height: 100vh;
-    }
-    .card {
-      max-width: 700px;
-      width: 100%;
-      background: white;
-      border-radius: 28px;
-      padding: 35px;
-      box-shadow: 0 10px 35px rgba(255,165,192,0.18);
-      border: 3px solid #ffd6e4;
-    }
-    .title {
-      text-align: center;
-      font-size: 28px;
-      color: #ff729a;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-    .subtitle {
-      text-align: center;
-      color: #999;
-      margin-bottom: 35px;
-    }
-    .question {
-      margin-bottom: 22px;
-    }
-    .q-text {
-      font-size: 17px;
-      color: #ff5c8d;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-    .option {
-      display: block;
-      background: #fff5fa;
-      border: 2px solid #ffe0ee;
-      border-radius: 12px;
-      padding: 12px 16px;
-      margin: 6px 0;
-      cursor: pointer;
-      transition: 0.3s;
-      font-size: 15px;
-    }
-    .option:hover {
-      background: #ffe6f2;
-      border-color: #ffb6d0;
-      transform: translateX(4px);
-    }
-    .option input {
-      margin-right: 8px;
-      accent-color: #ff729a;
-    }
-    .submit-btn {
-      width: 100%;
-      height: 50px;
-      background: linear-gradient(135deg,#ff729a,#ff5c8d);
-      color: white;
-      border: none;
-      border-radius: 25px;
-      font-size: 17px;
-      font-weight: bold;
-      margin-top: 25px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .submit-btn:hover {
-      transform: translateY(-2px);
-    }
-    .result {
-      display: none;
-      text-align: center;
-      animation: fadeIn 0.6s forwards;
-    }
-    .result-img {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid #ffd6e4;
-      margin: 10px auto 20px;
-    }
-    .result-title {
-      font-size: 24px;
-      color: #ff5c8d;
-      margin-bottom: 15px;
-      font-weight: bold;
-    }
-    .result-eight {
-      background: #fff5fa;
-      border-left: 4px solid #ff729a;
-      padding: 16px 20px;
-      border-radius: 12px;
-      text-align: left;
-      margin-bottom: 20px;
-      font-size: 15px;
-      color: #333;
-      line-height: 1.7;
-    }
-    .result-desc {
-      font-size: 16px;
-      color: #444;
-      line-height: 2;
-      text-align: left;
-      margin-bottom: 25px;
-    }
-    .reset-btn {
-      padding: 12px 30px;
-      background: #ffc0d0;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .reset-btn:hover {
-      background: #ff9fc0;
-      transform: scale(1.05);
-    }
-    @keyframes fadeIn {
-      from { opacity:0; transform:translateY(20px); }
-      to { opacity:1; transform:translateY(0); }
-    }
-    @media (max-width:576px) {
-      .card{padding:25px 20px;}
-      .title{font-size:24px;}
-      .result-img{width:150px;height:150px;}
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hello Kitty 人格测试</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
+body{background:#fef2f7;padding:20px;display:flex;justify-content:center;min-height:100vh}
+.card{max-width:700px;width:100%;background:white;border-radius:28px;padding:35px;box-shadow:0 10px 35px rgba(255,165,190,0.18);border:3px solid #ffd6e0}
+.title{text-align:center;font-size:28px;color:#ff729a;font-weight:bold;margin-bottom:8px}
+.subtitle{text-align:center;color:#999;margin-bottom:20px}
+.name-input{width:100%;padding:12px 15px;border-radius:15px;border:2px solid #ffd6e0;margin-bottom:20px;font-size:15px;text-align:center;outline:none;color:#555}
+.name-input:focus{border-color:#ff729a}
+.question{margin-bottom:22px}
+.q-text{font-size:17px;color:#ff5c8d;font-weight:bold;margin-bottom:10px}
+.option{display:block;background:#fff5fa;border:2px solid #ffe0ee;border-radius:12px;padding:12px 16px;margin:6px 0;cursor:pointer;transition:0.3s;font-size:15px}
+.option:hover{background:#ffe6f2;border-color:#ffb3d9;transform:translateX(4px)}
+.option input{margin-right:8px;accent-color:#ff729a}
+.submit-btn{width:100%;height:50px;background:linear-gradient(135deg,#ff729a,#ff5c8d);color:white;border:none;border-radius:25px;font-size:17px;font-weight:bold;margin-top:25px;cursor:pointer;transition:0.3s}
+.submit-btn:hover{transform:translateY(-2px)}
+.result{display:none;text-align:center;animation:fadeIn 0.6s forwards}
+.result-img{width:180px;height:180px;border-radius:50%;object-fit:cover;border:4px solid #ffd6e0;margin:10px auto 20px}
+.result-username{font-size:18px;color:#ff729a;margin-bottom:10px;font-weight:bold}
+.result-title{font-size:24px;color:#ff5c8d;margin-bottom:15px;font-weight:bold}
+.result-eight{
+  font-size:15px;color:#555;line-height:1.6;background:#fff5fa;padding:14px 16px;
+  border-radius:14px;margin-bottom:18px;text-align:left;white-space:pre-line;
+  border-left:4px solid #ff729a;
+}
+.result-desc{font-size:16px;color:#444;line-height:1.8;text-align:left;margin-bottom:25px;white-space:pre-line;}
+.reset-btn{padding:12px 30px;background:#ffc0d0;color:white;border:none;border-radius:20px;cursor:pointer;transition:0.3s}
+.reset-btn:hover{background:#ff9fc0;transform:scale(1.05)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:576px){.card{padding:25px 20px}.title{font-size:24px}.result-img{width:150px;height:150px}}
+</style>
 </head>
 <body>
 
 <div class="card">
   <div class="title">Hello Kitty 人格测试</div>
-  <div class="subtitle">🐱 15题·八维测试 🐱</div>
+  <div class="subtitle">🐱 输入名字，开始深度人格解析</div>
+
+  <input type="text" class="name-input" id="username" placeholder="请输入你的名字～">
 
   <div id="testForm">
     <div class="question">
       <div class="q-text">1. 社交活动结束后，你通常会？</div>
       <label class="option"><input type="radio" name="q1" value="A"> 感到疲惫，需要独处恢复</label>
-      <label class="option"><input type="radio" name="q1" value="B"> 精力充沛，还想继续互动</label>
-      <label class="option"><input type="radio" name="q1" value="F"> 安静放松，不想再说话</label>
+      <label class="option"><input type="radio" name="q1" value="B"> 精力充沛，想继续互动</label>
+      <label class="option"><input type="radio" name="q1" value="F"> 安静放松，不想说话</label>
       <label class="option"><input type="radio" name="q1" value="G"> 复盘收获，高效结束</label>
     </div>
 
@@ -169,7 +61,7 @@
     </div>
 
     <div class="question">
-      <div class="q-text">3. 收到礼物时，你最容易被哪一类戳中？</div>
+      <div class="q-text">3. 收到礼物时，哪一类最戳中你？</div>
       <label class="option"><input type="radio" name="q3" value="A"> 温柔实用、贴心小物</label>
       <label class="option"><input type="radio" name="q3" value="D"> 有趣创意、小众惊喜</label>
       <label class="option"><input type="radio" name="q3" value="C"> 精致高级、质感好物</label>
@@ -177,11 +69,11 @@
     </div>
 
     <div class="question">
-      <div class="q-text">4. 你的休闲时间更喜欢？</div>
+      <div class="q-text">4. 休闲时间你更喜欢？</div>
       <label class="option"><input type="radio" name="q4" value="D"> 宅家做喜欢的事</label>
-      <label class="option"><input type="radio" name="q4" value="B"> 出门逛街/探店/玩</label>
-      <label class="option"><input type="radio" name="q4" value="E"> 听歌/看剧/发呆</label>
-      <label class="option"><input type="radio" name="q4" value="G"> 学习/运动/提升自己</label>
+      <label class="option"><input type="radio" name="q4" value="B"> 出门逛街、探店、见朋友</label>
+      <label class="option"><input type="radio" name="q4" value="E"> 听歌、看剧、发呆</label>
+      <label class="option"><input type="radio" name="q4" value="G"> 学习、运动、提升自己</label>
     </div>
 
     <div class="question">
@@ -189,43 +81,43 @@
       <label class="option"><input type="radio" name="q5" value="A"> 共情安抚，温柔陪伴</label>
       <label class="option"><input type="radio" name="q5" value="C"> 理性分析，给出方案</label>
       <label class="option"><input type="radio" name="q5" value="F"> 安静陪伴，不打扰</label>
-      <label class="option"><input type="radio" name="q5" value="G"> 引导转移，专注解决</label>
+      <label class="option"><input type="radio" name="q5" value="G"> 引导行动，专注解决</label>
     </div>
 
     <div class="question">
       <div class="q-text">6. 平时你更喜欢喝什么奶茶？</div>
       <label class="option"><input type="radio" name="q6" value="E"> 芝士奶盖、香甜果茶</label>
-      <label class="option"><input type="radio" name="q6" value="B"> 珍珠奶茶、加料满满</label>
-      <label class="option"><input type="radio" name="q6" value="D"> 纯茶轻乳、清爽低糖</label>
-      <label class="option"><input type="radio" name="q6" value="C"> 黑咖啡拿铁、不喝甜腻</label>
+      <label class="option"><input type="radio" name="q6" value="B"> 珍珠奶茶，料越多越开心</label>
+      <label class="option"><input type="radio" name="q6" value="D"> 纯茶轻乳，清爽低糖</label>
+      <label class="option"><input type="radio" name="q6" value="C"> 黑咖啡/拿铁，不爱甜腻</label>
     </div>
 
     <div class="question">
       <div class="q-text">7. 学习新事物时，你更关注？</div>
-      <label class="option"><input type="radio" name="q7" value="A"> 实际用途与细节</label>
-      <label class="option"><input type="radio" name="q7" value="D"> 创意与发散可能</label>
-      <label class="option"><input type="radio" name="q7" value="E"> 美感与氛围</label>
-      <label class="option"><input type="radio" name="q7" value="G"> 价值与提升</label>
+      <label class="option"><input type="radio" name="q7" value="A"> 细节实用、好不好用</label>
+      <label class="option"><input type="radio" name="q7" value="D"> 创意好玩、是否有趣</label>
+      <label class="option"><input type="radio" name="q7" value="E"> 美感氛围、是否好看</label>
+      <label class="option"><input type="radio" name="q7" value="G"> 价值提升、是否有用</label>
     </div>
 
     <div class="question">
       <div class="q-text">8. 压力大时，你最需要？</div>
       <label class="option"><input type="radio" name="q8" value="A"> 温暖安慰与陪伴</label>
       <label class="option"><input type="radio" name="q8" value="F"> 独处空间自我疗愈</label>
-      <label class="option"><input type="radio" name="q8" value="C"> 冷静梳理解决问题</label>
-      <label class="option"><input type="radio" name="q8" value="G"> 专注搞钱提升底气</label>
+      <label class="option"><input type="radio" name="q8" value="C"> 冷静梳理，解决问题</label>
+      <label class="option"><input type="radio" name="q8" value="G"> 专注搞钱，提升底气</label>
     </div>
 
     <div class="question">
-      <div class="q-text">9. 你对“仪式感”的态度是？</div>
+      <div class="q-text">9. 你对仪式感的态度是？</div>
       <label class="option"><input type="radio" name="q9" value="A"> 很喜欢，增加幸福感</label>
       <label class="option"><input type="radio" name="q9" value="E"> 超爱，浪漫必不可少</label>
-      <label class="option"><input type="radio" name="q9" value="C"> 适度即可，不刻意</label>
-      <label class="option"><input type="radio" name="q9" value="G"> 没必要，务实最重要</label>
+      <label class="option"><input type="radio" name="q9" value="C"> 适量就好，不必刻意</label>
+      <label class="option"><input type="radio" name="q9" value="G"> 不太在意，务实更重要</label>
     </div>
 
     <div class="question">
-      <div class="q-text">10. 在团队中，你更适合？</div>
+      <div class="q-text">10. 在团队中你更适合？</div>
       <label class="option"><input type="radio" name="q10" value="A"> 协调关系，照顾大家</label>
       <label class="option"><input type="radio" name="q10" value="B"> 活跃气氛，带动热情</label>
       <label class="option"><input type="radio" name="q10" value="F"> 默默执行，踏实靠谱</label>
@@ -242,25 +134,25 @@
 
     <div class="question">
       <div class="q-text">12. 如果能变成小动物一天，你想当？</div>
-      <label class="option"><input type="radio" name="q12" value="A"> 温顺黏人、被宠着的小猫</label>
-      <label class="option"><input type="radio" name="q12" value="B"> 自由快乐、到处玩的小鸟</label>
-      <label class="option"><input type="radio" name="q12" value="F"> 安静慵懒、晒太阳的熊猫</label>
-      <label class="option"><input type="radio" name="q12" value="G"> 聪明独立、掌控节奏的狐狸</label>
+      <label class="option"><input type="radio" name="q12" value="A"> 温顺黏人、被宠爱的小猫</label>
+      <label class="option"><input type="radio" name="q12" value="B"> 自由快乐、到处探索的小鸟</label>
+      <label class="option"><input type="radio" name="q12" value="F"> 慵懒安静、晒太阳的熊猫</label>
+      <label class="option"><input type="radio" name="q12" value="G"> 聪明独立、掌控节奏的小狐狸</label>
     </div>
 
     <div class="question">
-      <div class="q-text">13. 面对冲突，你会？</div>
-      <label class="option"><input type="radio" name="q13" value="A"> 主动调和，维持和谐</label>
+      <div class="q-text">13. 面对冲突矛盾，你会？</div>
+      <label class="option"><input type="radio" name="q13" value="A"> 主动缓和，维持和睦</label>
       <label class="option"><input type="radio" name="q13" value="C"> 就事论事，理性解决</label>
-      <label class="option"><input type="radio" name="q13" value="F"> 回避退让，不想争吵</label>
-      <label class="option"><input type="radio" name="q13" value="G"> 明确立场，维护利益</label>
+      <label class="option"><input type="radio" name="q13" value="F"> 回避退让，不想吵架</label>
+      <label class="option"><input type="radio" name="q13" value="G"> 明确立场，维护自身</label>
     </div>
 
     <div class="question">
       <div class="q-text">14. 你更喜欢的生活节奏？</div>
       <label class="option"><input type="radio" name="q14" value="A"> 安稳舒适，慢节奏</label>
       <label class="option"><input type="radio" name="q14" value="D"> 自由随性，不被安排</label>
-      <label class="option"><input type="radio" name="q14" value="E"> 浪漫丰富，有惊喜</label>
+      <label class="option"><input type="radio" name="q14" value="E"> 浪漫丰富，常有惊喜</label>
       <label class="option"><input type="radio" name="q14" value="G"> 高效充实，不断进步</label>
     </div>
 
@@ -268,117 +160,179 @@
       <div class="q-text">15. 最终你想成为什么样的人？</div>
       <label class="option"><input type="radio" name="q15" value="A"> 温柔强大，治愈他人</label>
       <label class="option"><input type="radio" name="q15" value="B"> 永远快乐，充满活力</label>
-      <label class="option"><input type="radio" name="q15" value="F"> 通透平静，内心丰盈</label>
+      <label class="option"><input type="radio" name="q15" value="F"> 平静通透，内心丰盈</label>
       <label class="option"><input type="radio" name="q15" value="G"> 独立富足，清醒自由</label>
     </div>
 
-    <button class="submit-btn">生成我的专属人格</button>
+    <button class="submit-btn" onclick="getResult()">生成我的深度人格</button>
   </div>
 
   <div class="result" id="result">
     <img id="resultImg" class="result-img" src="">
+    <div class="result-username" id="resultUser"></div>
     <h2 class="result-title" id="resultTitle"></h2>
     <div class="result-eight" id="resultEight"></div>
     <p class="result-desc" id="resultDesc"></p>
-    <button class="reset-btn" onclick="resetTest()">再来一次</button>
+    <button class="reset-btn" onclick="resetTest()">再测一次</button>
   </div>
 </div>
 
 <script>
-const personalities = {
-  A: {
-    name: "🥛 温柔软萌奶芙Kitty",
-    eight: "【MBTI八维】ISFJ 守卫者 | 内向 + 实感 + 情感 + 判断\n核心特质：温暖细腻、踏实可靠、共情力极强、重视安全感、默默付出。",
-    desc: "你是天生的治愈者，内心柔软却拥有强大的情绪承载力。你总能敏锐捕捉到身边人的情绪变化，用最温柔的方式照顾所有人，习惯把委屈藏在心里，把温柔留给世界。你向往安稳、温暖、有烟火气的生活，不喜欢冲突与变化，重视承诺与陪伴，是身边人最信任、最依赖的存在。你的温柔不是软弱，而是历经世事后依然选择善良的强大力量。",
-    img: "https://s41.ax1x.com/2026/04/13/peDCg1J.jpg"
-  },
-  B: {
-    name: "☀️ 元气阳光活力Kitty",
-    eight: "【MBTI八维】ESFP 表演者 | 外向 + 实感 + 情感 + 感知\n核心特质：热情开朗、热爱生活、感染力超强、活在当下、真诚坦率。",
-    desc: "你是行走的小太阳，走到哪里就能把快乐带到哪里！天生热爱热闹、喜欢分享，讨厌压抑与沉闷，对生活永远保持新鲜感。你情绪直白、没有心机，难过会说、快乐会分享，擅长用最轻松的方式化解尴尬与低落。你活在当下，享受每一刻的美好，不纠结过去、不焦虑未来，自带快乐光环，和你在一起永远不会觉得无聊。",
-    img: "https://s41.ax1x.com/2026/04/13/peDCRXR.jpg"
-  },
-  C: {
-    name: "👑 优雅精致公主Kitty",
-    eight: "【MBTI八维】ESTJ 总经理 | 外向 + 实感 + 思考 + 判断\n核心特质：理性优雅、条理清晰、执行力强、注重质感、从容大方。",
-    desc: "你是气质与能力并存的理想范本，外表温柔优雅，内心清醒强大。你做事有条理、有规划，从不慌乱，审美与生活品质双在线，擅长把平凡的日子打理得精致高级。你理性务实却不失温度，懂得照顾他人也坚守边界，在任何场合都能保持得体与从容。你不依赖他人，不依附情绪，用自己的方式活成了独立又优雅的模样。",
-    img: "https://s41.ax1x.com/2026/04/13/peDCh0x.jpg"
-  },
-  D: {
-    name: "🍃 清新自在随性Kitty",
-    eight: "【MBTI八维】ISFP 艺术家 | 内向 + 实感 + 情感 + 感知\n核心特质：松弛治愈、温柔随性、热爱美好、讨厌束缚、内心纯粹。",
-    desc: "你是松弛感本身，通透、佛系、治愈，从不内耗，从不强求。你热爱自然、喜欢简单，讨厌复杂的人际关系与规则束缚，追求舒服自在的生活状态。你外表安静温和，内心丰富细腻，擅长在平凡中发现小美好，不争不抢、不焦不躁。你安静却不孤僻，温柔却有棱角，相处起来毫无压力，像一阵清风，舒服又治愈。",
-    img: "https://s41.ax1x.com/2026/04/13/peDC2c9.jpg"
-  },
-  E: {
-    name: "🍬 浪漫温柔甜心Kitty",
-    eight: "【MBTI八维】ENFP 追梦人 | 外向 + 直觉 + 情感 + 感知\n核心特质：浪漫可爱、少女感强、充满幻想、温柔细腻、热爱美好。",
-    desc: "你是被浪漫与温柔包裹的小天使，浑身都冒着甜甜的粉色泡泡！你热爱生活中的一切美好，擅长制造惊喜与仪式感，对世界永远充满善意与期待。你心思细腻、共情力拉满，总能用最软的语气说出最暖的话，少女感爆棚。你真诚、柔软、可爱，把日子过成了童话，自带治愈滤镜，让人忍不住想保护。",
-    img: "https://s41.ax1x.com/2026/04/13/peDCfn1.jpg"
-  },
-  F: {
-    name: "🌙 静谧温润治愈Kitty",
-    eight: "【MBTI八维】INFJ 提倡者 | 内向 + 直觉 + 情感 + 判断\n核心特质：安静通透、温柔坚定、内心强大、自愈力满分、灵魂治愈。",
-    desc: "你是安静却有力量的治愈者，偏爱独处，擅长在沉默中自愈与成长。你心思细腻、洞察力极强，能看透人心却选择温柔，内心平和且强大，从不向外张扬。你拥有超高的自愈能力，能消化所有负面情绪，也能默默治愈身边的人。你像月光一样沉静、温柔、有力量，不争不抢，却自有光芒。",
-    img: "https://s41.ax1x.com/2026/04/13/peDCyhF.jpg"
-  },
-  G: {
+const dimensionScores = {
+  q1: { A:{I:4,F:1}, B:{E:4,A:1}, F:{I:3,F:2}, G:{T:3,A:3} },
+  q2: { A:{F:4,S:1}, C:{T:4,A:1}, E:{Ro:4,F:1}, G:{A:4,T:2} },
+  q3: { A:{S:4,F:2}, D:{Ro:3,E:2}, C:{T:3,Ro:2}, F:{F:3,Ro:2} },
+  q4: { D:{I:4,Ro:1}, B:{E:4,Ro:1}, E:{Ro:4,F:1}, G:{A:4,T:1} },
+  q5: { A:{F:4,S:2}, C:{T:4,A:1}, F:{I:2,F:3}, G:{A:3,T:3} },
+  q6: { E:{Ro:4,F:1}, B:{E:3,Ro:2}, D:{I:3,T:2}, C:{T:4,A:1} },
+  q7: { A:{S:4,T:1}, D:{Ro:4,E:1}, E:{Ro:3,F:2}, G:{A:4,T:2} },
+  q8: { A:{F:4,S:1}, F:{I:4,F:1}, C:{T:4,A:1}, G:{A:4,T:2} },
+  q9: { A:{F:3,S:2}, E:{Ro:4,F:2}, C:{T:3,Ro:1}, G:{A:3,T:2} },
+  q10:{ A:{S:4,F:2}, B:{E:4,Ro:1}, F:{I:3,S:2}, C:{T:4,A:1} },
+  q11:{ A:{F:4,S:1}, B:{E:3,Ro:2}, F:{I:3,F:2}, G:{A:4,T:1} },
+  q12:{ A:{F:3,S:2}, B:{E:3,Ro:2}, F:{I:4,F:1}, G:{A:4,T:1} },
+  q13:{ A:{S:4,F:1}, C:{T:4,A:1}, F:{I:3,F:2}, G:{A:3,T:3} },
+  q14:{ A:{S:4,F:1}, D:{I:3,Ro:2}, E:{Ro:4,F:1}, G:{A:4,T:1} },
+  q15:{ A:{F:4,S:1}, B:{E:3,Ro:2}, F:{I:4,F:1}, G:{A:4,T:1} }
+};
+
+// 🔥 深度心理洞察版 · 高级文案
+const personalities = [
+  {
     name: "💰 招财搞钱MoneyKitty",
-    eight: "【MBTI八维】INTJ 战略家 | 内向 + 直觉 + 思考 + 判断\n核心特质：人间清醒、独立务实、目标明确、规划力强、搞钱天赋拉满。",
-    desc: "你是天生的清醒实力派，不恋爱脑、不内耗、不盲从，只相信自己与实力。你理性、冷静、有远见，擅长规划未来、执行目标，搞钱能力与理财意识一流。你独立自强，坚信安全感是自己给的，从不依赖他人，情绪稳定、行动力超强。你自带招财体质，清醒又努力，未来一定会暴富、自由、独立，活成自己最想要的模样！",
-    img: "https://s41.ax1x.com/2026/04/13/peDCcp4.jpg"
+    match:d=>d.A >= 12,
+    eight:"【INTJ战略家】｜清醒务实｜目标导向｜内在力量极强",
+    desc:(u)=>`${u}，你的内核是“清醒的掌控者”。
+你很早就明白：安全感只能自己给自己，情绪不能解决问题，唯有实力与底气可以。
+
+你习惯理性思考，擅长长期规划，外表冷静克制，内心拥有极强的韧性与执行力。
+你不热衷无效社交，不沉溺无意义的情绪内耗，你把能量全部投向自我成长。
+
+你的孤独不是缺陷，而是你保持清醒与高效的方式。
+你注定会靠自己，活成稳定、可靠、闪闪发光的模样。`,
+    img:"https://s41.ax1x.com/2026/04/13/peDCcp4.jpg"
+  },
+  {
+    name: "🥛 温柔软萌奶芙Kitty",
+    match:d=>d.S >= 14,
+    eight:"【ISFJ守卫者】｜细腻共情｜忠诚可靠｜隐性的强大",
+    desc:(u)=>`${u}，你的温柔，是最有力量的天赋。
+你拥有极强的共情力，能轻易看见别人的脆弱与不易，习惯把温暖留给世界。
+
+你重视承诺，做事踏实，习惯默默付出，却很少表达自己的需求。
+你不是软弱，而是选择善良；你不是退让，而是懂得体谅。
+
+你最需要学习的，是把温柔分一点给自己。
+你值得被坚定选择，值得被稳稳接住，值得所有细水长流的爱与安心。`,
+    img:"https://s41.ax1x.com/2026/04/13/peDCg1J.jpg"
+  },
+  {
+    name: "☀️ 元气阳光活力Kitty",
+    match:d=>d.E >= 14,
+    eight:"【ESFP表演者】｜鲜活生命力｜真实治愈｜活在当下",
+    desc:(u)=>`${u}，你是生活最真诚的热爱者。
+你拥有天然的感染力，不伪装、不压抑、不内耗，快乐就表达，难过就释放。
+
+你从不困在过去与未来，你真正拥有“活在当下”的能力。
+你用最鲜活的方式，对抗世界的沉闷，治愈身边每一个人。
+
+你的真诚与热烈，是最珍贵的品质。
+不必变得沉稳，保持热烈，你本身就是光。`,
+    img:"https://s41.ax1x.com/2026/04/13/peDCRXR.jpg"
+  },
+  {
+    name: "🍬 浪漫温柔甜心Kitty",
+    match:d=>d.Ro >= 15,
+    eight:"【ENFP追梦人】｜理想主义｜灵性治愈｜灵魂自由",
+    desc:(u)=>`${u}，你拥有一颗最珍贵的、未被世俗磨平的灵魂。
+你敏感、细腻、充满想象力，能在平凡生活里看见诗意与浪漫。
+
+你向往真诚，厌恶虚伪，相信美好，也愿意创造美好。
+你看似柔软，内心却有极其坚定的精神世界，不轻易被世俗同化。
+
+你的浪漫不是幼稚，是你对抗现实的力量。
+保持你的天真与温柔，世界会因你多一份甜。`,
+    img:"https://s41.ax1x.com/2026/04/13/peDCfn1.jpg"
+  },
+  {
+    name: "🌙 静谧温润治愈Kitty",
+    match:d=>d.I >= 16,
+    eight:"【INFJ提倡者】｜高度通透｜温柔坚定｜精神深度",
+    desc:(u)=>`${u}，你是安静却极具力量的治愈者。
+你习惯独处，在安静中完成自我修复与成长，拥有顶级的自愈力与洞察力。
+
+你能轻易看透人心，却选择温柔；你懂得世间复杂，却保持纯粹。
+你不追求热闹，只在意灵魂的同频，内心丰盈而强大。
+
+你的强大，是静水流深的强大。
+不必强迫自己融入人群，你的安静，本身就是一种力量。`,
+    img:"https://s41.ax1x.com/2026/04/13/peDCyhF.jpg"
+  },
+  {
+    name: "👑 优雅精致公主Kitty",
+    match:d=>d.T >= 12,
+    eight:"【ESTJ总经理】｜理性优雅｜秩序感｜独立掌控",
+    desc:(u)=>`${u}，你天生拥有“高级掌控力”。
+你理性、清晰、有条理，不允许自己陷入混乱与情绪化。
+
+你追求体面与质感，对自己有要求，对生活有标准。
+你不依附他人，不依赖运气，你靠自己的能力撑起想要的生活。
+
+你的优雅不是伪装，是内心秩序的外在体现。
+你会活成自己的靠山，清醒、独立、闪闪发光。`,
+    img:"https://s41.ax1x.com/2026/04/13/peDCh0x.jpg"
+  },
+  {
+    name: "🍃 清新自在随性Kitty",
+    match:d=>true,
+    eight:"【ISFP艺术家】｜松弛通透｜本真自我｜温和而坚定",
+    desc:(u)=>`${u}，你拥有最难得的“松弛感”。
+你不焦虑、不攀比、不强迫自己，接纳自己的所有样子。
+
+你喜欢简单、舒服、自由的状态，不被规则束缚，不被外界定义。
+你外表温和，内心有自己的坚持，温柔却有边界。
+
+你最珍贵的，是你始终忠于自己。
+慢慢来，不慌不忙，你会活成最舒服、最迷人的模样。`,
+    img:"https://s41.ax1x.com/2026/04/13/peDC2c9.jpg"
   }
-};
+];
 
-const scoreMap = {
-  q1:{A:10,B:10,C:0,D:0,E:0,F:10,G:9},
-  q2:{A:10,B:0,C:10,D:0,E:9,F:0,G:10},
-  q3:{A:10,B:0,C:9,D:10,E:0,F:9,G:0},
-  q4:{A:0,B:9,C:0,D:10,E:10,F:0,G:9},
-  q5:{A:10,B:0,C:9,D:0,E:0,F:9,G:10},
-  q6:{A:0,B:9,C:8,D:10,E:10,F:0,G:0},
-  q7:{A:10,B:0,C:0,D:9,E:10,F:0,G:10},
-  q8:{A:10,B:0,C:9,D:0,E:0,F:10,G:10},
-  q9:{A:10,B:0,C:8,D:0,E:10,F:0,G:9},
-  q10:{A:10,B:10,C:9,D:0,E:0,F:9,G:0},
-  q11:{A:10,B:9,C:0,D:0,E:0,F:10,G:10},
-  q12:{A:10,B:10,C:0,D:0,E:0,F:10,G:10},
-  q13:{A:10,B:0,C:10,D:0,E:0,F:9,G:10},
-  q14:{A:10,B:0,C:0,D:10,E:10,F:0,G:10},
-  q15:{A:10,B:10,C:0,D:0,E:0,F:10,G:10}
-};
-
-function getResult() {
-  const questions = Array.from({length:15},(_,i)=>`q${i+1}`);
-  let answers = {}, complete = true;
-  for(let q of questions){
-    const sel = document.querySelector(`input[name="${q}"]:checked`);
-    if(!sel){ complete=false; break; }
-    answers[q]=sel.value;
+function calculateDimensions() {
+  let d = {E:0,I:0,F:0,T:0,S:0,Ro:0,A:0};
+  for(let i=1; i<=15; i++){
+    let q = "q"+i;
+    let sel = document.querySelector(`input[name="${q}"]:checked`);
+    if(!sel) return null;
+    let v = sel.value;
+    let sc = dimensionScores[q][v];
+    for(let k in sc) d[k] += sc[k];
   }
-  if(!complete){ alert("请完成全部15道题目哦～"); return; }
-
-  let score = {A:0,B:0,C:0,D:0,E:0,F:0,G:0};
-  for(let q of questions) { const t=answers[q]; score[t]+=scoreMap[q][t]; }
-  
-  let max=0, rt="A";
-  for(let t in score) if(score[t]>max){ max=score[t]; rt=t; }
-
-  const res=personalities[rt];
-  document.getElementById("resultImg").src=res.img;
-  document.getElementById("resultTitle").innerText=res.name;
-  document.getElementById("resultEight").innerText=res.eight;
-  document.getElementById("resultDesc").innerText=res.desc;
-  document.getElementById("result").style.display="block";
-  document.getElementById("testForm").style.display="none";
+  return d;
 }
 
-document.querySelector('.submit-btn').onclick=getResult;
+function getResult() {
+  let user = document.getElementById("username").value.trim();
+  if(!user){ alert("先输入你的名字哦～"); return; }
+  
+  let d = calculateDimensions();
+  if(!d){ alert("请完成全部15道题目～"); return; }
+  
+  let res = personalities.find(p => p.match(d)) || personalities[6];
+  document.getElementById("resultUser").innerText = `专属 ${user} 的深度人格报告`;
+  document.getElementById("resultTitle").innerText = res.name;
+  document.getElementById("resultEight").innerText = res.eight;
+  document.getElementById("resultDesc").innerText = res.desc(user);
+  document.getElementById("resultImg").src = res.img;
+  
+  document.getElementById("testForm").style.display = "none";
+  document.getElementById("result").style.display = "block";
+}
 
-function resetTest(){
-  document.querySelectorAll("input[type=radio]").forEach(i=>i.checked=false);
-  document.getElementById("testForm").style.display="block";
-  document.getElementById("result").style.display="none";
+function resetTest() {
+  document.querySelectorAll("input[type=radio]").forEach(i => i.checked = false);
+  document.getElementById("testForm").style.display = "block";
+  document.getElementById("result").style.display = "none";
 }
 </script>
 </body>
