@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hello Kitty 人格测试</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "PingFang SC","Microsoft YaHei",sans-serif;
+    }
+    body {
+      background: #fef2f7;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .card {
+      max-width: 700px;
+      width: 100%;
+      background: white;
+      border-radius: 28px;
+      padding: 35px;
+      box-shadow: 0 10px 35px rgba(255,165,192,0.18);
+      border: 3px solid #ffd6e4;
+    }
+    .title {
+      text-align: center;
+      font-size: 28px;
+      color: #ff729a;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #999;
+      margin-bottom: 35px;
+    }
+    .question {
+      margin-bottom: 22px;
+    }
+    .q-text {
+      font-size: 17px;
+      color: #ff5c8d;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .option {
+      display: block;
+      background: #fff5fa;
+      border: 2px solid #ffe0ee;
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin: 6px 0;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 15px;
+    }
+    .option:hover {
+      background: #ffe6f2;
+      border-color: #ffb6d0;
+      transform: translateX(4px);
+    }
+    .option input {
+      margin-right: 8px;
+      accent-color: #ff729a;
+    }
+    .submit-btn {
+      width: 100%;
+      height: 50px;
+      background: linear-gradient(135deg,#ff729a,#ff5c8d);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 17px;
+      font-weight: bold;
+      margin-top: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .submit-btn:hover {
+      transform: translateY(-2px);
+    }
+    .result {
+      display: none;
+      text-align: center;
+      animation: fadeIn 0.6s forwards;
+    }
+    .result-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #ffd6e4;
+      margin: 10px auto 20px;
+    }
+    .result-title {
+      font-size: 24px;
+      color: #ff5c8d;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+    .result-eight {
+      background: #fff5fa;
+      border-left: 4px solid #ff729a;
+      padding: 16px 20px;
+      border-radius: 12px;
+      text-align: left;
+      margin-bottom: 20px;
+      font-size: 15px;
+      color: #333;
+      line-height: 1.7;
+    }
+    .result-desc {
+      font-size: 16px;
+      color: #444;
+      line-height: 2;
+      text-align: left;
+      margin-bottom: 25px;
+    }
+    .reset-btn {
+      padding: 12px 30px;
+      background: #ffc0d0;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .reset-btn:hover {
+      background: #ff9fc0;
+      transform: scale(1.05);
+    }
+    @keyframes fadeIn {
+      from { opacity:0; transform:translateY(20px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+    @media (max-width:576px) {
+      .card{padding:25px 20px;}
+      .title{font-size:24px;}
+      .result-img{width:150px;height:150px;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="title">Hello Kitty 人格测试</div>
+  <div class="subtitle">🐱 20题·八维深度专业版 🐱</div>
+
+  <div id="testForm">
+    <div class="question">
+      <div class="q-text">1. 社交活动结束后，你通常会？</div>
+      <label class="option"><input type="radio" name="q1" value="A"> 感到疲惫，需要独处恢复</label>
+      <label class="option"><input type="radio" name="q1" value="B"> 精力充沛，还想继续互动</label>
+      <label class="option"><input type="radio" name="q1" value="F"> 安静放松，不想再说话</label>
+      <label class="option"><input type="radio" name="q1" value="G"> 复盘收获，高效结束</label>
+    </div>
+
+    <div class="question">
+      <div class="q-text">2. 做重要决策时，你优先依据？</div>
+      <label class="option"><input type="radio" name="q2" value="A"> 情感与他人感受</label>
+      <label class="option"><input type="radio" name="q2" value="C"> 逻辑与客观事实</label>
+      <label class="option"><input type="radio" name="q2" value="E"> 直觉与内心向往</label>
+      <label class="option"><input type="radio" name="q2" value="G"> 现实利益与结果</label>
+    </div>
+
+    <div class="question">
+      <div class="q-text">3. 你更擅长记住？</div>
+      <label class="option"><input type="radio" name="q3" value="A"> 具体细节与过往经验</label>
+      <label class="option"><input type="radio" name="q3" value="D"> 抽象概念与未来可能</label>
+      <label class="option"><input type="radio" name="q3" value="C"> 规律与条理框架</label>
+      <label class="option"><input type="radio" name="q3" value="F"> 情绪与氛围感受</label>
+    </div>
+
+    <div class="question">
+      <div class="q-text">4. 你的生活状态更偏向？</div>
+      <label class="option"><input type="radio" name="q4" value="A"> 规划清晰，稳定有序</label>
+      <label class="option"><input type="radio" name="q4" value="D"> 随性自由，灵活多变</label>
+      <label class="option"><input type="radio" name="q4" value="B"> 热闹充实，充满惊喜</label>
+      <label class="option"><input type="radio" name="q4" value="G"> 目标导向，执行到位</label>
+    </div>
+
+    <div class="question">
+      <div class="q-text">5. 面对他人负面情绪，你会？</div>
+      <label class="option"><input type="radio" name="q5" value="A"> 共情安抚，温柔陪伴</label>
+      <label class="option"><input type="radio" name="q5" value="C"> 理性分析，给出方案</label>
+      <label class="option"><input type="radio" name="q5" value="F"> 安静陪伴，不打扰</label>
+      <label class="option"><input type="radio" name="q5" value="G"> 引导转移，专注解决</label>
+    </div>
+
+    <div class="question">
+      <div class="q-text">6. 你更喜欢的沟通方式是？</div>
+      <label class="option"><input type="radio" name="q6" value="A"> 温和真诚，走心交流</label>
+      <label class="option"><input type="radio" name="q6" value="B"> 轻松活泼，直接坦率</label>
+      <label class="option"><input type="radio" name="q6" value="F"> 简洁安静，点到为止</label>
+      <label class="option"><input type="radio" name="q6" value="C"> 逻辑清晰，高效务实</label>
+    </div>
+
+    <div class="question">
+      <div class="q-text">7. 学习新事物时，你更关注？</div>
+      <label class="option"><input type="radio" name="q7" value="A"> 实际用途与细节</label>
+      <label class="option"><input type="radio" name="q7" value="D"> 创意与发散可能</label>
+      <label class="option"><input type="radio" name="q7" value="E"> 美感与氛围</label>
+      <label class="option"><input type="radio" name="q7" value="G"> 价值与提升</label>
+    </div>
+
+    <div class="question">
+      <div class="q-text">8. 压力大时，你最需要？</div>
+      <label class="option"><input type="radio" name="q8" value="A"> 温暖安慰与陪伴</label>
+      <label class="option"><input type="radio" name="q8" value="F"> 独处空间自我疗愈</label>
+      <label class="option"><input type="radio" name="q8" value="C"> 冷静梳理解决问题</label>
+      <label class="option"><input type="radio" name="q8" value="G"> 专注搞钱提升底气</label>
+    </div>
+
+    <div class="question">
+      <div class="q-text">9. 你对“仪式感”的态度是？</div>
+      <label class="option"><input type="radio" name="q9" value="A"> 很喜欢，增加幸福感</label>
+      <label class="option"><input type="radio" name="q9" value="E"> 超爱，浪漫必不可少</label>
+      <label class="option"><input type="radio" name="q9" value="C"> 适度即可，不刻意</label>
+      <label class="option"><input type="radio" name="q9" value="G"> 没必要，务实最重要</label>
+    </div>
+
+    <div class="question">
+      <div class="q-text">10. 在团队中，你更适合？</div>
+      <label class="option"><input type="radio" name="q10" value="A"> 协调关系，照顾大家</label>
+      <label class="option"><input type="radio" name="q10" value="B"> 活跃气氛，带动热情</label>
+      <label class="option"><input type="radio" name="q10" value="F"> 默默执行，踏实靠谱</label>
+      <label class="option"><input type="radio" name="q10" value="C"> 规划统筹，理性决策</label>
+    </div>
+
+    <div class="question">
+      <div class="q-text">11. 你更向往的关系是？</div>
+      <label class="option"><input type="radio" name="q11" value="A"> 温柔相守，互相治愈</label>
+      <label class="option"><input type="radio" name="q11" value="B"> 快乐同行，轻松有趣</label>
+      <label class="option"><input type="radio" name="q11" value="F"> 灵魂默契，无需多言</label>
+      <label class="option"><input type="radio" name="q11" value="G"> 势均力敌，共同成长</label>
+    </div>
+
+    <div class="question">
+      <div class="q-text">12. 评价自己，你是？</div>
+      <label class="option"><input type="radio" name="q12" value="A"> 温柔体贴，重视他人</label>
+      <label class="option"><input type="radio" name="q12" value="D"> 随性自在，讨厌束缚</label>
+      <label class="option"><input type="radio" name="q12" value="E"> 浪漫细腻，充满幻想</label>
+      <label class="option"><input type="radio" name="q12" value="C"> 冷静理智，客观独立</label>
+    </div>
+
+    <div class="question">
+      <div class="q-text">13. 空闲时间你更爱？</div>
+      <label class="option"><input type="radio" name="q13" value="A"> 宅家整理，治愈自己</label>
+      <label class="option"><input type="radio" name="q13" value="B"> 出门社交，探索新鲜</label>
+      <label class="option"><input type="radio" name="q13" value="F"> 安静看书，沉浸内心</label>
+      <label class="option"><input type="radio" name="q13" value="G"> 学习搞钱，提升自我</label>
+    </div>
+
+    <div class="question">
+      <div class="q-text">14. 面对冲突，你会？</div>
+      <label class="option"><input type="radio" name="q14" value="A"> 主动调和，维持和谐</label>
+      <label class="option"><input type="radio" name="q14" value="C"> 就事论事，理性解决</label>
+      <label class="option"><input type="radio" name="q14" value="F"> 回避退让，不想争吵</label>
+      <label class="option"><input type="radio" name="q14" value="G"> 明确立场，维护利益</label>
+    </div>
+
+    <div class="question">
+      <div class="q-text">15. 你对未来的态度是？</div>
+      <label class="option"><input type="radio" name="q15" value="A"> 安稳就好，小确幸足矣</label>
+      <label class="option"><input type="radio" name="q15" value="D"> 顺其自然，活在当下</label>
+      <label class="option"><input type="radio" name="q15" value="E"> 充满期待，浪漫憧憬</label>
+      <label class="option"><input type="radio" name="q15" value="G"> 规划清晰，努力实现</label>
+    </div>
+
+    <div class="question">
+      <div class="q-text">16. 你更容易被什么打动？</div>
+      <label class="option"><input type="radio" name="q16" value="A"> 真诚善意与温柔</label>
+      <label class="option"><input type="radio" name="q16" value="B"> 阳光快乐与活力</label>
+      <label class="option"><input type="radio" name="q16" value="F"> 安静理解与陪伴</label>
+      <label class="option"><input type="radio" name="q16" value="C"> 能力靠谱与理性</label>
+    </div>
+
+    <div class="question">
+      <div class="q-text">17. 你做事的风格是？</div>
+      <label class="option"><input type="radio" name="q17" value="A"> 稳妥细致，不出差错</label>
+      <label class="option"><input type="radio" name="q17" value="B"> 快速行动，边做边调</label>
+      <label class="option"><input type="radio" name="q17" value="D"> 随心而为，享受过程</label>
+      <label class="option"><input type="radio" name="q17" value="G"> 目标明确，高效完成</label>
+    </div>
+
+    <div class="question">
+      <div class="q-text">18. 你更在意？</div>
+      <label class="option"><input type="radio" name="q18" value="A"> 他人感受与关系</label>
+      <label class="option"><input type="radio" name="q18" value="C"> 对错道理与公平</label>
+      <label class="option"><input type="radio" name="q18" value="F"> 内心平静与自洽</label>
+      <label class="option"><input type="radio" name="q18" value="G"> 实际收益与成长</label>
+    </div>
+
+    <div class="question">
+      <div class="q-text">19. 你喜欢的环境是？</div>
+      <label class="option"><input type="radio" name="q19" value="A"> 温暖整洁，舒适安心</label>
+      <label class="option"><input type="radio" name="q19" value="B"> 热闹明亮，充满生气</label>
+      <label class="option"><input type="radio" name="q19" value="F"> 安静简约，远离喧嚣</label>
+      <label class="option"><input type="radio" name="q19" value="C"> 整洁有序，高效实用</label>
+    </div>
+
+    <div class="question">
+      <div class="q-text">20. 最终你想成为什么样的人？</div>
+      <label class="option"><input type="radio" name="q20" value="A"> 温柔强大，治愈他人</label>
+      <label class="option"><input type="radio" name="q20" value="B"> 永远快乐，充满活力</label>
+      <label class="option"><input type="radio" name="q20" value="F"> 通透平静，内心丰盈</label>
+      <label class="option"><input type="radio" name="q20" value="G"> 独立富足，清醒自由</label>
+    </div>
+
+    <button class="submit-btn">生成我的专属人格</button>
+  </div>
+
+  <div class="result" id="result">
+    <img id="resultImg" class="result-img" src="">
+    <h2 class="result-title" id="resultTitle"></h2>
+    <div class="result-eight" id="resultEight"></div>
+    <p class="result-desc" id="resultDesc"></p>
+    <button class="reset-btn" onclick="resetTest()">再来一次</button>
+  </div>
+</div>
+
+<script>
+const personalities = {
+  A: {
+    name: "🥛 温柔软萌奶芙Kitty",
+    eight: "【MBTI八维】ISFJ 守卫者 | 内向 + 实感 + 情感 + 判断\n核心特质：温暖细腻、踏实可靠、共情力极强、重视安全感、默默付出。",
+    desc: "你是天生的治愈者，内心柔软却拥有强大的情绪承载力。你总能敏锐捕捉到身边人的情绪变化，用最温柔的方式照顾所有人，习惯把委屈藏在心里，把温柔留给世界。你向往安稳、温暖、有烟火气的生活，不喜欢冲突与变化，重视承诺与陪伴，是身边人最信任、最依赖的存在。你的温柔不是软弱，而是历经世事后依然选择善良的强大力量。",
+    img: "soft-kitty.jpg"
+  },
+  B: {
+    name: "☀️ 元气阳光活力Kitty",
+    eight: "【MBTI八维】ESFP 表演者 | 外向 + 实感 + 情感 + 感知\n核心特质：热情开朗、热爱生活、感染力超强、活在当下、真诚坦率。",
+    desc: "你是行走的小太阳，走到哪里就能把快乐带到哪里！天生热爱热闹、喜欢分享，讨厌压抑与沉闷，对生活永远保持新鲜感。你情绪直白、没有心机，难过会说、快乐会分享，擅长用最轻松的方式化解尴尬与低落。你活在当下，享受每一刻的美好，不纠结过去、不焦虑未来，自带快乐光环，和你在一起永远不会觉得无聊。",
+    img: "sunshine-kitty.jpg"
+  },
+  C: {
+    name: "👑 优雅精致公主Kitty",
+    eight: "【MBTI八维】ESTJ 总经理 | 外向 + 实感 + 思考 + 判断\n核心特质：理性优雅、条理清晰、执行力强、注重质感、从容大方。",
+    desc: "你是气质与能力并存的理想范本，外表温柔优雅，内心清醒强大。你做事有条理、有规划，从不慌乱，审美与生活品质双在线，擅长把平凡的日子打理得精致高级。你理性务实却不失温度，懂得照顾他人也坚守边界，在任何场合都能保持得体与从容。你不依赖他人，不依附情绪，用自己的方式活成了独立又优雅的模样。",
+    img: "elegant-kitty.jpg"
+  },
+  D: {
+    name: "🍃 清新自在随性Kitty",
+    eight: "【MBTI八维】ISFP 艺术家 | 内向 + 实感 + 情感 + 感知\n核心特质：松弛治愈、温柔随性、热爱美好、讨厌束缚、内心纯粹。",
+    desc: "你是松弛感本身，通透、佛系、治愈，从不内耗，从不强求。你热爱自然、喜欢简单，讨厌复杂的人际关系与规则束缚，追求舒服自在的生活状态。你外表安静温和，内心丰富细腻，擅长在平凡中发现小美好，不争不抢、不焦不躁。你安静却不孤僻，温柔却有棱角，相处起来毫无压力，像一阵清风，舒服又治愈。",
+    img: "free-kitty.jpg"
+  },
+  E: {
+    name: "🍬 浪漫温柔甜心Kitty",
+    eight: "【MBTI八维】ENFP 追梦人 | 外向 + 直觉 + 情感 + 感知\n核心特质：浪漫可爱、少女感强、充满幻想、温柔细腻、热爱美好。",
+    desc: "你是被浪漫与温柔包裹的小天使，浑身都冒着甜甜的粉色泡泡！你热爱生活中的一切美好，擅长制造惊喜与仪式感，对世界永远充满善意与期待。你心思细腻、共情力拉满，总能用最软的语气说出最暖的话，少女感爆棚。你真诚、柔软、可爱，把日子过成了童话，自带治愈滤镜，让人忍不住想保护。",
+    img: "sweet-kitty.jpg"
+  },
+  F: {
+    name: "🌙 静谧温润治愈Kitty",
+    eight: "【MBTI八维】INFJ 提倡者 | 内向 + 直觉 + 情感 + 判断\n核心特质：安静通透、温柔坚定、内心强大、自愈力满分、灵魂治愈。",
+    desc: "你是安静却有力量的治愈者，偏爱独处，擅长在沉默中自愈与成长。你心思细腻、洞察力极强，能看透人心却选择温柔，内心平和且强大，从不向外张扬。你拥有超高的自愈能力，能消化所有负面情绪，也能默默治愈身边的人。你像月光一样沉静、温柔、有力量，不争不抢，却自有光芒。",
+    img: "quiet-kitty.jpg"
+  },
+  G: {
+    name: "💰 招财搞钱MoneyKitty",
+    eight: "【MBTI八维】INTJ 战略家 | 内向 + 直觉 + 思考 + 判断\n核心特质：人间清醒、独立务实、目标明确、规划力强、搞钱天赋拉满。",
+    desc: "你是天生的清醒实力派，不恋爱脑、不内耗、不盲从，只相信自己与实力。你理性、冷静、有远见，擅长规划未来、执行目标，搞钱能力与理财意识一流。你独立自强，坚信安全感是自己给的，从不依赖他人，情绪稳定、行动力超强。你自带招财体质，清醒又努力，未来一定会暴富、自由、独立，活成自己最想要的模样！",
+    img: "money-kitty.jpg"
+  }
+};
+
+// 20题专业评分
+const scoreMap = {
+  q1:{A:10,B:10,C:0,D:0,E:0,F:10,G:9}, q2:{A:10,B:0,C:10,D:0,E:9,F:0,G:10},
+  q3:{A:10,B:0,C:9,D:10,E:0,F:9,G:0}, q4:{A:10,B:9,C:0,D:10,E:0,F:0,G:10},
+  q5:{A:10,B:0,C:9,D:0,E:0,F:9,G:10}, q6:{A:10,B:10,C:9,D:0,E:0,F:9,G:0},
+  q7:{A:10,B:0,C:0,D:9,E:10,F:0,G:10}, q8:{A:10,B:0,C:9,D:0,E:0,F:10,G:10},
+  q9:{A:10,B:0,C:8,D:0,E:10,F:0,G:9}, q10:{A:10,B:10,C:9,D:0,E:0,F:9,G:0},
+  q11:{A:10,B:9,C:0,D:0,E:0,F:10,G:10},q12:{A:10,B:0,C:9,D:10,E:10,F:0,G:0},
+  q13:{A:10,B:10,C:0,D:0,E:0,F:10,G:10},q14:{A:10,B:0,C:10,D:0,E:0,F:9,G:10},
+  q15:{A:10,B:0,C:0,D:10,E:10,F:0,G:10},q16:{A:10,B:10,C:9,D:0,E:0,F:9,G:0},
+  q17:{A:10,B:9,C:0,D:10,E:0,F:0,G:10},q18:{A:10,B:0,C:10,D:0,E:0,F:9,G:10},
+  q19:{A:10,B:10,C:9,D:0,E:0,F:9,G:0},q20:{A:10,B:10,C:0,D:0,E:0,F:10,G:10}
+};
+
+function getResult() {
+  const questions = Array.from({length:20},(_,i)=>`q${i+1}`);
+  let answers = {}, complete = true;
+  for(let q of questions){
+    const sel = document.querySelector(`input[name="${q}"]:checked`);
+    if(!sel){ complete=false; break; }
+    answers[q]=sel.value;
+  }
+  if(!complete){ alert("请完成全部20道题目哦～"); return; }
+
+  let score = {A:0,B:0,C:0,D:0,E:0,F:0,G:0};
+  for(let q of questions) { const t=answers[q]; score[t]+=scoreMap[q][t]; }
+  
+  let max=0, rt="A";
+  for(let t in score) if(score[t]>max){ max=score[t]; rt=t; }
+
+  const res=personalities[rt];
+  document.getElementById("resultImg").src=res.img;
+  document.getElementById("resultTitle").innerText=res.name;
+  document.getElementById("resultEight").innerText=res.eight;
+  document.getElementById("resultDesc").innerText=res.desc;
+  document.getElementById("result").style.display="block";
+  document.getElementById("testForm").style.display="none";
+}
+
+document.querySelector('.submit-btn').onclick=getResult;
+
+function resetTest(){
+  document.querySelectorAll("input[type=radio]").forEach(i=>i.checked=false);
+  document.getElementById("testForm").style.display="block";
+  document.getElementById("result").style.display="none";
+}
+</script>
+</body>
+</html>
